@@ -1,0 +1,632 @@
+/* 
+
+    -- FONT SIZE SYSTEM (px): 
+        10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+    --- SPACING SYSTEM (px):
+        2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+/* @media(max-width:1200px) {
+    .hero__container {
+        background-color: red;
+        color: #fff;
+    }
+}
+
+@media(max-width:700px) {
+    .hero__container {
+        background-color: blue;
+        border: 20px solid yellow;
+    }
+} */
+
+/*! media query IMPORTANT !
+   якщо у нас є неконфліктуючі властивості, в 2 медіа-запитах,
+   то обидва з них застосуються (border & color)
+   проте, якщо є конфліктуючі властивості, то застосується 
+   НЕ ТОЙ ЩО БІЛЬШ КОНКРЕТНИЙ (у кого max-width менша)
+   А ТОЙ ЩО НИЖЧЕ СТОЇТЬ У .css ФАЙЛІ !!!!!!
+   ПС: попробуй поміняти їх місцями вище */
+
+
+/*! rem and em do NOT depend on html font-size in media queries !!! */
+/* in media queries 1rem doesn't correspond to our stated font-size in html {} 
+   instead it is always == default 16px
+   
+   Instead 1rem === 1em === 16px
+   
+   % rem - root font-size
+   % em  - current font-size
+
+   * rem has some bugs in some browsers in media queries
+*/
+
+/* 
+I would say that a media query should work
+over a range of at least 200 or 300 pixels.
+All right, so as I had already mentioned
+we should not like at a media query every
+50 pixels to fix every single design problem
+that appears as we scale down the page.
+*/
+
+/***************************/
+/****** BELOW 1344PX *******/
+/***************************/
+/* SMALL DESKTOPS */
+
+
+/* 1350px/16 = 84.375 em */
+@media(max-width: 84em) {
+    .hero__container {
+        /* from 130 to 120 (to default container width) */
+        max-width: 120rem;
+    }
+
+    /* хоча ми на max-width: 75em змінемо базовий font-size, ми все одно думаємо про
+       1 rem як про 10 px  { */
+    .heading-primary {
+        font-size: 4.4rem;
+    }
+}
+
+
+/***************************/
+/****** BELOW 1200PX *******/
+/***************************/
+/* LANDSCAPE TABLETS */
+/* cuz there is a feeling (at zoom 100%) that everything is too big */
+@media(max-width: 75em) {
+
+    /*% THE COOLEST CHANGE !!! */
+    /*  All of these length
+        so all of the sizes basically that we defined anywhere
+        on the page are dependent on this one setting in html { font-size: 62.5%; }
+        So on this font size, right?
+        So if we now change this every single length and every single font size
+        on the page will immediately change, right? */
+    html {
+        /* if we set 5px everything will become DRASTICALLY SMALL !!! */
+        /* 9px/16px = 56.25%*/
+        font-size: 56.25%;
+    }
+
+    .heading__secondary {
+        font-size: 3.6rem;
+    }
+
+    .heading__tertiary {
+        font-size: 2.4rem;
+    }
+
+    .testimonials__gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reusable-grid {
+        /* from 6.4rem to ... [one step down]*/
+        column-gap: 4.8rem;
+        /* [2 steps down] */
+        row-gap: 6.4rem;
+    }
+
+    .header {
+        padding: 0 3.2rem;
+    }
+
+    .nav__list {
+        gap: 3.2rem;
+    }
+
+    .hero__container {
+        gap: 4.8rem;
+    }
+
+    .testimonials__container {
+        /* on sides we want to have same padding as in .container and .header */
+        padding: 9.6rem 3.2rem;
+    }
+
+    .testimonials__reviews {
+        /* from 8rem to */
+        column-gap: 4.8rem;
+    }
+}
+
+
+/**************************/
+/****** BELOW 950PX *******/
+/**************************/
+/* Vertical TABLETS */
+
+/* 950/16 = 59.375*/
+@media(max-width: 59.375em) {
+    html {
+        font-size: 50%;
+        /* 8px/16px = 50% */
+    }
+
+    .hero__container {
+        grid-template-columns: 1fr;
+
+        /* to center content, cuz too wide */
+        /*!no: justify-items: center; */
+        text-align: center;
+
+        /* increase padding from  
+            padding: 0 3.2rem;
+        */
+        padding: 0 8rem;
+
+        /* from last media-query of decreasing to 4.8 to 6.4 */
+        gap: 6.4rem;
+    }
+
+    .hero__delivered-meals {
+        /* to center content, cuz too wide */
+        justify-content: center;
+
+        /* from 8rem to 3.2rem */
+        margin-top: 3.2rem;
+    }
+
+    .hero__img-box img {
+        width: 60%;
+    }
+
+    /* ------------------- */
+
+    .featured__logos img {
+        height: 1.6rem;
+    }
+
+    .featured__title {
+        margin-bottom: 2.4rem;
+    }
+
+    /* ------------------- */
+
+
+    .how__step-number {
+        font-size: 7.4rem;
+    }
+
+
+    .meal__content {
+        /* padding: 2.4rem 3.2rem 3.2rem; */
+        /* padding: 2.4rem 2.4rem 3.2rem; */
+        padding: 12% 13% 14%;
+
+
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
+    }
+
+    .meal__attribute>span {
+        gap: 1.2rem;
+    }
+
+    .section__testimonials {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials__container {
+        padding-bottom: 4.8rem;
+    }
+
+
+    .testimonials__gallery {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .pricing__plan {
+        padding: 3.2rem;
+    }
+
+    .pricing__plan::before {
+        top: 6%;
+        right: -5.5rem;
+    }
+
+    .plan__sign-up {
+        margin-top: 3.2rem;
+    }
+
+    .plan__sign-up .button__full {
+        padding: 1.6rem 1.6rem;
+    }
+
+    .cta__grid {
+        grid-template-columns: 60fr 40fr;
+    }
+
+    .cta__form {
+        grid-template-columns: 1fr;
+    }
+
+    .cta__button {
+        margin-top: 1.2rem;
+    }
+
+    .header__mobile-nav-btn {
+        display: block;
+    }
+
+    .header__nav {
+        position: absolute;
+        top: 0;
+
+        left: 0;
+        /* right: 0; */
+
+        width: 100%;
+        /* width: 40%; */
+
+        /* height: 100dvh; */
+        /*! кастильне рішення проблеми коли в нас трошки прогорнуто і нажимають на бургер */
+        height: 120dvh;
+
+
+        background-color: #fdf2e9bb;
+
+        /* % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+        /* https://caniuse.com/?search=backdrop%20filter */
+        backdrop-filter: blur(4px);
+        /* for safari we need "-webkit-" prefix */
+        -webkit-backdrop-filter: blur(4px);
+
+
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        /* transition: all 2s ease-in; */
+        transition-property: opacity, pointer-events, visibility, transform;
+        transition-duration: 0.4s;
+        transition-timing-function: ease-in;
+
+        /* ease-in  slower in the begining */
+        /* ease-out faster in the begining */
+        /* ease-in-out faster in the begining and in the end and slows down
+                       in the middle */
+
+
+        /*! allows NO ANIMATIONS AT ALL !!!! */
+        /* display: none; */
+        /* display none - ДІЙСНО ВИДАЛЯЄ ЕЛЕМЕНТ З PAGE FLOW
+                          так ніби його не існує */
+        /* Literally remove nav from document flow  */
+
+        /*% 1 step) Hide visually */
+        /* тому  opacity: 0; це лише 1ий крок, бо елемент ще буде на сторінці
+                             і коли ми нажиматимемо таб, то воно реагуватимк*/
+        opacity: 0;
+
+        /*% 2 step) Make it unaccesible to mouse and button */
+        pointer-events: none;
+
+        /*% 3 step) Hide element from screen readers */
+        visibility: hidden;
+
+
+        transform: translateX(100%);
+    }
+
+    /* як зробити шоб при відкриванні меню, у нас не можна було скролити */
+    /* якщо .open-menu вішається на хедер, то не працює
+       бо треба обмежити скрол по всьому документу
+       то мабуть попробувати вішати на body */
+    .open-menu {
+        overflow: hidden;
+    }
+
+    .open-menu .header__nav {
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+
+        /* overflow: hidden; */
+        transform: translateX(0%);
+    }
+
+    .open-menu .header__mobile-icon[name='menu-outline'] {
+        display: none;
+    }
+
+    .open-menu .header__mobile-icon[name='close-outline'] {
+        display: block;
+    }
+
+
+    /* ! тут .open-menu не має бути! */
+    /* .open-menu .header__nav .nav__list { */
+    .header__nav .nav__list {
+        flex-direction: column;
+        gap: 4.8rem;
+
+        width: 50%;
+        /* width: 90%; */
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .nav__list-item:not(:last-child) {
+        /* flex-shrink: 0;
+        flex-grow: 1;
+        flex-basis: 100%; */
+        /* flex: 1; */
+        background-color: #ffffffcd;
+    }
+
+
+    .nav__list-link:link,
+    .nav__list-link:visited {
+        display: inline-block;
+        width: 100%;
+        padding: 1.2rem 0;
+    }
+
+    .nav__list-item:last-child {
+        align-self: center;
+    }
+
+    .nan__list-link:link,
+    .nan__list-link:visited {
+        font-size: 3rem;
+    }
+}
+
+
+
+/**************************/
+/****** BELOW 750PX *******/
+/**************************/
+/* Smaller TABLETS */
+
+@media(max-width: 46.875em) {
+
+    .hero__img-box img {
+        width: 80%;
+    }
+
+    .reusable-grid__3-cols,
+    .reusable-grid__4-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .meals__diets {
+        grid-column: 1/-1;
+        justify-self: center;
+    }
+
+    .pricing__plan {
+        width: 100%;
+    }
+
+    .footer__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* ! there is simpler solution */
+    /* .footer__nav-col:first-of-type {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .footer__nav-col:nth-of-type(2) {
+        grid-column: 2/3;
+        grid-row: 1/2;
+    }
+
+    .footer__nav-col:last-of-type {
+        grid-column: 3/4;
+        grid-row: 1/2;
+    } */
+    /*% simpler */
+    .footer__nav-col {
+        grid-row: 1;
+    }
+
+    /*todo: but how to fix that 2 last elems will ocuppy remaining space on second row ?*/
+    /** !!!! trick for creating assymetric grid !!! */
+
+    .footer__grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .footer__nav-col {
+        grid-column: span 2;
+    }
+
+    .footer__logo-col,
+    .footer__address-col {
+        grid-column: span 3;
+    }
+
+    .footer__grid {
+        row-gap: 8rem;
+    }
+
+
+
+}
+
+/**************************/
+/****** BELOW 550PX *******/
+/**************************/
+/* Phones */
+
+@media(max-width: 34.375em) {
+
+    .reusable-grid__2-cols,
+    .reusable-grid__3-cols,
+    .reusable-grid__4-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .reusable-grid {
+        row-gap: 4.8rem;
+    }
+
+    .hero__container {
+        padding: 0 3rem;
+
+        row-gap: 4.8rem;
+    }
+
+    .section-hero {
+        padding: 1.2rem 0 4.8rem;
+    }
+
+    .hero__delivered-meals {
+        flex-direction: column;
+    }
+
+
+
+    .button,
+    .button:link,
+    .button:visited {
+        width: 100%;
+        padding: 2.4rem 1.6rem;
+        margin-bottom: 2.4rem;
+    }
+
+    .featured__logos img {
+        height: 1.2rem;
+    }
+
+
+    .how__grid {
+        row-gap: 3.2rem;
+    }
+
+    /* .how__grid .how__step-img-box:first-of-type {
+        border: 10px solid red;
+    } */
+
+    /* ! ПРАЦЮВАТИМЕ, БО ВІН ДІЙСНО 2 ДИТИНА У СВОМУ БАТЬКУ */
+    .how__grid .how__step-img-box:nth-child(2) {
+        /* border: 10px solid red; */
+        /* grid-row: 1/2; */
+        grid-row: 1;
+    }
+
+    /* 
+    So you just need to keep in mind that this number here is the actual basically order of the child in the container.
+    So it has nothing to do with the class name, okay?
+    */
+
+    .how__grid .how__step-img-box:nth-child(6) {
+        /* grid-row: 5/6; */
+        grid-row: 5;
+    }
+
+    /* todo: як візуально зблизити картинки з їх відпов. текст-боксами? */
+    /** 1) margin-bottom to text-box */
+    .how__step-text-box:not(:nth-child(5)) {
+        margin-bottom: 3.2rem;
+    }
+
+    /** 2) trandform:translate img */
+    .how__step-img {
+        transform: translateY(4.8rem);
+    }
+
+    /* increase them -----------> */
+    .meal__title {
+        font-size: 3rem;
+    }
+
+    .meal__attribute {
+        font-size: 2.4rem;
+    }
+
+    .meal__tag {
+        font-size: 1.6rem;
+    }
+
+    /* <--------------------------- */
+    .meal__content {
+        padding: 4% 15% 7%;
+    }
+
+
+    .testimonials__reviews {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonials__gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+    }
+
+    .cta__img-box {
+        grid-row: 1;
+        /* padding-bottom: 36rem; */
+        height: 32rem;
+    }
+
+    .cta__text-box {
+        padding: 3.2rem 1.6rem;
+    }
+
+}
+
+
+/**  ***********************  */
+/** Fixing safary flexbox gap */
+/**  ***********************  */
+
+
+.no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 4.8rem;
+}
+
+.no-flexbox-gap .list-item:not(:last-child) {
+    margin-bottom: 1.6rem;
+}
+
+.no-flexbox-gap .list-icon:not(:last-child) {
+    margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .delivered-faces {
+    margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .meal-attribute:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.no-flexbox-gap .meal-icon {
+    margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .footer-row div:not(:last-child) {
+    margin-right: 6.4rem;
+}
+
+.no-flexbox-gap .social-links li:not(:last-child) {
+    margin-right: 2.4rem;
+}
+
+.no-flexbox-gap .footer-nav li:not(:last-child) {
+    margin-bottom: 2.4rem;
+}
+
+@media (max-width: 75em) {
+    .no-flexbox-gap .main-nav-list li:not(:last-child) {
+        margin-right: 3.2rem;
+    }
+}
+
+@media (max-width: 59em) {
+    .no-flexbox-gap .main-nav-list li:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 4.8rem;
+    }
+}

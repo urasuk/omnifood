@@ -1,0 +1,1080 @@
+/***********************************/
+/*****      HEADER SECTION       ***/
+/***********************************/
+
+.logo {
+    height: 2.2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #fdf2e9;
+
+    height: 9.6rem;
+    /* тут ми встановлюємо фіксовану висоту контейнера, а не робимо
+       як завжди, щоб висота === висоті контенту + падінг
+       бо ми будемо робити його стікі */
+
+    padding: 0 4.8rem;
+
+    gap: 3.2em;
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    /* align-items: stretch; */
+    gap: 4.8rem;
+}
+
+/* .nav__list-item {
+    height: 100%;
+} */
+
+.nav__list-link:link,
+.nav__list-link:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.8rem;
+    transition: all 0.3s;
+
+    text-wrap: nowrap;
+}
+
+.nav__list-link:hover,
+.nav__list-link:active {
+    text-decoration: none;
+    color: #cf711f;
+
+}
+
+/* CTA */
+/* increase specificity (so that not only cascade) */
+.nav__list-link.nav__cta:link,
+.nav__list-link.nav__cta:visited {
+    padding: 1.2rem 2.4rem;
+    border-radius: 9px;
+    background-color: #e67e22;
+
+    color: #fff;
+}
+
+.nav__list-link.nav__cta:hover,
+.nav__list-link.nav__cta:active {
+    background-color: #cf711f;
+}
+
+/*************** MOBILE ********** */
+
+/* Sticky */
+
+.sticky .header {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+
+    width: 100%;
+    height: 60px;
+    /* hard code to 80 so that we can create effect with IntersectionObserver  */
+
+    background-color: #fdf2e9ae;
+    box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.09);
+}
+
+.sticky .section-hero {
+    margin-top: 9.6rem;
+}
+
+/*             
+<button class="header__mobile-nav-btn">
+    <ion-icon name="menu-outline" class="header__mobile-icon"></ion-icon>
+    <ion-icon name="close-outline" class="header__mobile-icon"></ion-icon>
+</button> 
+*/
+.header__mobile-nav-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    display: none;
+
+    z-index: 999;
+}
+
+.header__mobile-icon {
+    height: 4.8rem;
+    width: 4.8rem;
+    color: #333;
+}
+
+/* .header__mobile-icon[name*='menu'] { */
+.header__mobile-icon[name='menu-outline'] {
+    /* background-color: #26ff00; */
+}
+
+.header__mobile-icon[name='close-outline'] {
+    /* background-color: #ff0000; */
+    display: none;
+}
+
+
+
+/***********************************/
+/*****       HERO SECTION        ***/
+/***********************************/
+
+.section-hero {
+    background-color: #fdf2e9;
+    /* to save background color use padding */
+    /* 96px - a lot as it is between sections */
+    padding: 4.8rem 0 9.6rem 0;
+
+    /* height: 100vh; */
+}
+
+
+.hero__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    /* width: 1300px; */
+    /*! not in px, but in rem */
+    /* width: 130rem; */
+    /*! not width, cuz when viewport is < then overflow on y-axis */
+    max-width: 130rem;
+
+    margin: 0 auto;
+    /* i would add padding as well */
+    padding: 0 3.2rem;
+
+    /*? WE DID NOT MOVED TO REUSABLE .container CLASS */
+    /* cuz it's considered HERO SECTION to be a litle bit
+        WIDER THEN THE REST OF THE CONTENT  */
+
+    align-items: center;
+    column-gap: 9.6rem;
+    /* row-gap: 2.4rem; */
+}
+
+
+.hero {}
+
+.hero__text-box {}
+
+
+.hero__description {
+    font-size: 2rem;
+    /* line-height: 1.5; */
+    /* Unitless values: use this number multiplied
+by the element's font size */
+    /* normal
+Depends on the user agent. Desktop browsers (including Firefox) use a default value of roughly 1.2, depending on the element's font-family. */
+
+    line-height: 1.6;
+
+    margin-bottom: 4.8rem;
+}
+
+
+.hero__img-box {}
+
+.hero__img-box img {
+    /* max-width: 100%; */
+    /* тут без сенсу використовувати саме max-width з %
+       адже max-width використовується більше тоді коли
+       ширина вказана в px, і коли ширина вʼюпорта стає
+       < за ту ширину, яку ми вказали в px, то ширина 
+       зменшуватиметься. а при % при зменшені вʼюпорту,
+       ширина і так зменшуватиметься
+     */
+    width: 100%;
+}
+
+
+.hero__delivered-meals {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    margin-top: 8rem;
+}
+
+.hero__faces {
+    display: flex;
+
+    /*todo: overlap image slightly */
+    /*! gap: - 0.5rem;   DOESN'T WORK */
+}
+
+.hero__faces img {
+    /* based on SPACING SYSTEM */
+    height: 4.8rem;
+    /* safari has a bug so add width as well */
+    width: 4.8rem;
+    border-radius: 50%;
+
+    margin-left: -1.6rem;
+    /* or margin-right and then last-child */
+
+    border: 3px solid #fdf2e9;
+}
+
+.hero__faces img:first-child {
+    margin: 0;
+}
+
+
+.hero__delivery-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.hero__delivery-text span {
+    color: #cf711f;
+    font-weight: 700;
+}
+
+/******************************************/
+/*****       FEATURED IN SECTION        ***/
+/******************************************/
+
+.section__featured {
+    padding: 4.8rem 0 1.6rem;
+}
+
+.featured {}
+
+
+.featured__title {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.75px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 3.2rem;
+    color: #888;
+}
+
+.featured__logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.featured__logos img {
+    height: 2.4rem;
+
+    /*! new filter property for images */
+    /* filter: grayscale(100%); */
+    /* filter: blur(4px); */
+
+    /* will make it black */
+    filter: brightness(0);
+
+    /* will make it gray*/
+    opacity: 0.5;
+
+}
+
+/***********************************/
+/*****        HOW SECTION        ***/
+/***********************************/
+
+
+/*  reusable grid [below example   111. video] */
+/* .section__how {
+    padding: 9.6rem 0;
+    background-color: #41ffdc;
+    font-size: 5rem;
+}
+
+.how__grid div {
+    padding: 10rem;
+}
+
+.how__grid div {
+    background-color: orangered;
+} */
+
+
+.section__how {
+    padding: 9.6rem 0;
+}
+
+.how {}
+
+.how__grid {
+    /* justify-items: center; */
+}
+
+.how__step-text-box {
+    /* align-self: center; */
+    /* or  */
+    /* reusable-grid__center-items-v to how__grid */
+}
+
+.how__step-number {
+    font-size: 9.8rem;
+    font-weight: 600;
+    color: #ddd;
+    /* f e d  */
+    margin-bottom: 1.2rem;
+}
+
+.how__step-description {
+    font-size: 1.8rem;
+    line-height: 1.8;
+}
+
+.how__step-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.how__step-img-box::before,
+.how__step-img-box::after {
+    content: '';
+    display: block;
+    border-radius: 50%;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+.how__step-img-box::after {
+    /* content: '';
+    display: block;
+    border-radius: 50%; */
+
+    width: 60%;
+    background-color: #fdf2e9;
+
+    /* height: 60%; */
+    /*! встановлювати висоту в % не працює  */
+    /* 
+    ! EXPLANATION:  
+    Псевдоелементи можуть використовувати відсотки щодо висоти відносно їх батьківського елемента. Переконайтеся, що батьківський елемент (how__step-img-box в даному випадку) має встановлену висоту, яка є відомою для браузера. Якщо висота не задана або встановлена автоматично, відсоткова висота може не працювати.
+     */
+    /*% тому є хак використовувати padding: */
+    /*% ⛔️ ATTENTION ⛔️ */
+    /*% PADDING IN % IS CALCULATED FROM PARENT'S WIDTH*/
+    /*% (.how__step-img-box) as well as WIDTH IN % SO THEY*/
+    /**% WILL BE EQUAL !!! */
+    padding-bottom: 60%;
+
+    /* position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); */
+    z-index: -2;
+
+    animation: pulse 2.4s infinite;
+    /* Adjust the duration as needed */
+}
+
+.how__step-img-box::before {
+    width: 50%;
+    padding-bottom: 50%;
+    background-color: #fae5d3;
+    z-index: -1;
+
+    animation: pulse2 2.4s infinite;
+    /* Adjust the duration as needed */
+}
+
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes pulse2 {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+
+    90% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.how__step-img {
+    width: 35%;
+}
+
+
+/***********************************/
+/*****       MEALS SECTION       ***/
+/***********************************/
+
+.section__meals {
+    padding: 9.6rem 0;
+}
+
+.meals__meal {}
+
+.meal {
+    box-shadow: 0 0.24rem 0.48rem 0 rgba(51, 51, 51, 0.175);
+    border-radius: 11px;
+
+    overflow: hidden;
+
+    transition: all 0.6s;
+}
+
+.meal:hover {
+    transform: translate(0, -0.5rem);
+    box-shadow: 0 1.2rem 2.4rem rgba(51, 51, 51, 0.075);
+    ;
+}
+
+.meal__content {
+    padding: 3.2rem 4.8rem 4.8rem;
+}
+
+.meal__image-box {
+    overflow: hidden;
+}
+
+.meal__img {
+    width: 100%;
+    transition: transform 0.6s;
+}
+
+.meal:hover .meal__img {
+    transform: scale(1.05);
+}
+
+
+
+.meal__tags {
+    margin-bottom: 1.2rem;
+
+    display: flex;
+    gap: 1.2rem;
+}
+
+.meal__tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #333;
+    border-radius: 100px;
+    font-weight: 500;
+}
+
+.meal__tag__vegetarian {
+    background-color: #51cf66;
+}
+
+.meal__tag__vegan {
+    background-color: #94d82d;
+}
+
+.meal__tag__paleo {
+    background-color: #ffd43b;
+}
+
+.meal__title {
+    font-size: 2rem;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 3.2rem;
+}
+
+.meal__attributes {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.meal__attribute {
+    font-size: 1.8rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.meal__attribute>span {
+    width: 100%;
+    display: flex;
+    gap: 2.4rem;
+}
+
+.meal__attribute span strong {
+    flex-basis: 20%;
+    /* flex-grow: 1; */
+    flex-shrink: 0;
+}
+
+
+
+.meal__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    color: #e67e22;
+    /* this icons from this framework are treated as text
+       so not stroke or fill but color works */
+}
+
+/* .list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.list__item {
+    font-size: 1.8rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.list__icon {
+    width: 3rem;
+    height: 3rem;
+    color: #e67e22;
+} */
+
+.meals__all-recipies {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/******************************************/
+/*****       TESTIMONIALS SECTION       ***/
+/******************************************/
+
+.section__testimonials {
+    /* padding: 9.6rem 0; */
+
+    background-color: #fae5d3;
+
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+
+    /* ! TRICK */
+    /* ! USE fr as % */
+    /* ! (we can think of them like %) */
+    grid-template-columns: 60fr 40fr;
+
+    /*! та проблема що елементи (картинки з галереї) вверх їдуть в cell при звужені вʼюпорту */
+    /* це тому що батьківський дів (цей section__testimonials) є грід контейнером 
+    а дефолтне align-items --- stretch
+    тому і його елемент (наш грід-галерея)
+    розтягується */
+    align-items: center;
+}
+
+.testimonials__container {
+    /* padding: 9.6rem 0; */
+    padding: 9.6rem;
+    /* padding-left: 9.6rem; */
+}
+
+.testimonials__reviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
+    row-gap: 4.8rem;
+    column-gap: 8rem;
+}
+
+.testimonials__review-box {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.7rem;
+    box-shadow: 0px 2px 5px rgba(85, 85, 85, 0.173);
+}
+
+.testimonials__img {
+    width: 6.4rem;
+    border-radius: 50%;
+    margin-bottom: 1.2rem;
+}
+
+.testimonials__text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 1.6rem;
+}
+
+.testimonials__author {
+    font-size: 1.6rem;
+    color: #6f6f6f;
+}
+
+.testimonials__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(4, 1fr); */
+
+    gap: 1.6rem;
+
+    padding: 1.6rem;
+}
+
+
+.gallery__item {
+    overflow: hidden;
+    border-radius: 0.7rem;
+
+}
+
+.gallery__img {
+    /* часто img мають довкола себе
+    набридливий невидимий маржин, так його фіксити */
+    /* він навіть є коли gallery__img стає 
+       грід елементом  */
+    display: block;
+    /* display: flex; */
+
+
+    width: 100%;
+    /* тіпа 100% від GRID CELL, ширина якої
+       визначена як 1/4 від контейнера */
+
+    transition: all 0.4s;
+}
+
+.gallery__img:hover {
+    transform: scale(1.1);
+}
+
+
+/*************************************/
+/*****       PRICING SECTION       ***/
+/*************************************/
+
+
+.section__pricing {
+    padding: 9.6rem 0;
+}
+
+.pricing {}
+
+.pricing__grid {
+    /* make them less wide */
+    /* justify-items: start; */
+}
+
+
+.pricing__plan {
+    /* deemphesising STARTER */
+    /* background-color: #fdf2e9; */
+    border-radius: 11px;
+    padding: 4.8rem;
+
+    /* make them less wide */
+    width: 75%;
+
+    /* todo: how to move button to the bottom (as starter doesn't have 1 feature so our button is moved up)*/
+    /*% solution: expand list with flex */
+    /*% solution: just add empty bullet point */
+    /* display: flex;
+    flex-direction: column; */
+}
+
+/* todo: how to move left "pricing plan" item inside grid cell to the left */
+/* .pricing__plan:first-child {
+    justify-self: end;
+} */
+.plan__starter {
+    justify-self: end;
+
+    /* border: 2px solid #fdf2e9; */
+    box-shadow: inset 0px 0px 0px 2px #fdf2e9;
+}
+
+.plan__complete {
+    background-color: #fdf2e9;
+    position: relative;
+
+    overflow: hidden;
+}
+
+.plan__complete::before {
+    content: 'Best value';
+
+    display: inline-block;
+    width: 20rem;
+    background-color: #ffd43b;
+
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+
+    transform: rotate(45deg);
+
+    position: absolute;
+    top: 7%;
+    right: -12%;
+    /* translate: 30% 150%; */
+    /* or using top and right */
+
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* .list--grow {
+    flex-grow: 1;
+    flex-shrink: 0;
+} */
+
+.plan__starter li:last-child span {
+    text-decoration: line-through;
+}
+
+.plan__starter li:last-child .list__icon {
+    color: #6f6f6f;
+}
+
+
+.plan__header {
+    text-align: center;
+    margin-bottom: 4.8rem;
+}
+
+.plan {}
+
+.plan__name {
+    color: #cf711f;
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.75;
+    margin-bottom: 2.4rem;
+}
+
+.plan__price {
+    font-size: 6.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.2rem;
+}
+
+.plan__price span {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.plan__price-text {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #6f6f6f;
+}
+
+.plan__price-text strong {
+    color: #333;
+}
+
+.plan__price-text span {
+    font-size: 1.2rem;
+}
+
+
+.plan__sign-up {
+    text-align: center;
+
+    margin-top: 4.8rem;
+}
+
+
+/* features ----- */
+
+.features__grid {}
+
+.features__item {}
+
+.feature__icon {
+    color: #e67e22;
+    height: 3.2em;
+    width: 3.2em;
+    margin-bottom: 3.2rem;
+
+    border-radius: 50%;
+    background-color: #fae5d3;
+    padding: 1.6rem;
+}
+
+
+.feature__title {
+    font-size: 2.4rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+}
+
+.feature__text {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+}
+
+.pricing__plan-details {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+/*********************************/
+/*****       CTA SECTION       ***/
+/*********************************/
+
+.section__cta {
+    /* padding: 9.6rem 0; */
+    padding: 4.8rem 0 12.8rem;
+}
+
+.cta__grid {
+    grid-template-columns: 2fr 1fr;
+    box-shadow: 0 0.24rem 0.48rem 0 rgba(51, 51, 51, 0.175);
+    border-radius: 11px;
+    /* background-color: #e67e22; */
+
+    /* 
+    linear-gradient
+
+    CLOCKWISE DIRECTION
+    0deg - points to the TOP (1st color -> 2d color)
+    90deg - points to the RIGHT 
+    180deg - points to the BOTTOM 
+    270deg - points to the LEFT 
+    */
+    /* background-image: linear-gradient(90deg, #e67e22, #5d5033); */
+    /* background-image: linear-gradient(to right, #e67e22, #5d5033); */
+
+    background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
+
+
+    overflow: hidden;
+}
+
+.cta__img-box {
+    background: linear-gradient(rgba(230, 125, 34, 0.188), #eb974e3d), url("../img/eating.jpg");
+    /* background-position: 0 0; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cta__text-box {
+    color: #45260a;
+}
+
+.cta__text-box {
+    padding: 4.8rem 6.4rem 6.4rem;
+}
+
+.heading__secondary {
+    margin-bottom: 3.2rem;
+    color: inherit;
+}
+
+.cta__text {
+    font-size: 1.7rem;
+    line-height: 1.7;
+
+    margin-bottom: 4.8rem;
+
+}
+
+.cta__form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3.2rem;
+    row-gap: 2.4rem;
+}
+
+.cta__form label {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+
+.cta__form input,
+.cta__form select {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+
+    font-family: inherit;
+    color: inherit;
+
+    border: none;
+    background-color: #fdf2e9;
+    border-radius: 1.0rem;
+
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cta__form input::placeholder {
+    color: #aaa;
+}
+
+/*! universal selector for tab navigation */
+.cta__form input:focus,
+.cta__form select:focus {
+    /* *:focus { */
+    /*!PROBLEM на клік теж воно є*/
+    outline: none;
+    /* outline: 2px solid #ffd43b; */
+    /* outline-offset: 10px; */
+    box-shadow: 0 0 0 0.8rem #ffd53bc6;
+}
+
+.cta__form *:focus {
+    box-shadow: 0 0 0 0.8rem #b8b8b88e;
+}
+
+a:focus {
+    /* box-shadow: none; */
+}
+
+
+
+/* .cta__form select {} */
+/*! we can't manipu;ate modal poping window (depends on os) */
+
+.cta__button {
+    border: none;
+    cursor: pointer;
+
+    background-color: #45260a;
+    color: #fdfdfd;
+
+    align-self: end;
+
+    padding: 1.2rem;
+}
+
+.cta__button:hover {
+    background-color: #fff;
+    color: #45260a;
+}
+
+
+/*********************************/
+/*****    FOOTER SECTION       ***/
+/*********************************/
+
+footer {
+    padding: 12.8rem 0;
+
+    border-top: 1px solid #eee;
+}
+
+.footer__grid {
+    grid-template-columns: repeat(2, 1.6fr) repeat(3, 1fr);
+}
+
+.footer__logo-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__link-logo {
+    display: block;
+    margin-bottom: 3.2rem;
+}
+
+.footer__social-links {
+    /*% [solution !!!] */
+    /* flex: 1; */
+
+
+    list-style: none;
+    display: flex;
+    gap: 2.4rem;
+
+}
+
+.footer__social-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+.copyright {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #767676;
+
+    /*% [solution !!!] */
+    margin-top: auto;
+}
+
+.footer__contacts {
+    /* cuz that <address> has some default styling */
+    font-style: normal;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+/* TODO: WHAT'S WRONG ?  */
+/* .footer__contacts:first-child { */
+
+.footer__contacts p:first-child {
+    margin-bottom: 2.4rem;
+}
+
+.footer__heading {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+}
+
+.footer__nav {
+    list-style: none;
+}
+
+.footer__link:link,
+.footer__link:visited {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #767676;
+    transition: all 0.3s;
+}
+
+.footer__link:hover,
+.footer__link:active {
+    color: #555;
+}
+
+.footer__nav :not(li:last-child) {
+    margin-bottom: 2.4rem;
+}

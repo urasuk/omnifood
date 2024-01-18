@@ -1,0 +1,398 @@
+/* 
+
+*--- 00 Typography system
+
+    -- FONT SIZE SYSTEM (px): 
+        10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+    -- FONT WEIGHTS: 
+        400 [normal]
+        500 [medium]
+        600 [semi-bold]
+        700 [bold]
+
+    -- FONT HEIGHTS: 
+        DEFAULT: 1.0
+                 0.97  [heading primary]
+                 1.6   [paragraph default]
+                 1.8   [how__step-description]
+    
+    -- LETTER SPACING:
+                 1px    [subheading]
+                 0.7px  [buttons]
+                -0.5px  [primary, secondary headings]
+
+
+*--- 01 SPACING SYSTEM (px):
+
+    2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+
+*--- 02 Colors
+
+    -- Main (primary): #e67e22
+    -- Tints (light):
+        #fdf2e9
+        #eb984e
+    -- Shades (dark):
+    -- Accents:
+    -- Greys:
+        #555
+        #333
+        #6f6f6f (lightest grey allowed on #fdf2e9)
+        #767676  (lightest grey allowed on #fff)
+
+
+*--- 03 Images
+    -- SOURCE: 
+        unsplash.com
+        uifaces.co
+
+*--- 04 Icons
+
+
+*--- 05 Shadows
+    **should have a system so that wvwrywhere shadows must be same
+    box-shadow: 0 0.24rem 0.48rem 0 rgba(51, 51, 51, 0.175);
+
+*--- 05 Border-radius
+    -- [default] 9px;
+
+
+
+% TOOLS:
+    -- tints and shades generator
+        -- https://maketintsandshades.com/
+    -- color shages
+        -- https://yeun.github.io/open-color/
+    -- icons
+        -- https://heroicons.com/
+        -- https://ionic.io/ionicons
+
+    
+
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* font-family: 'Inter', sans-serif; */
+    /* for start-up personality - 'Inter' is a good choice
+       but we also have calm personality 🍀 in our design */
+    font-family: 'Rubik', sans-serif;
+    /* він має не такі гострі краї  */
+
+
+    line-height: 1;
+    /* 
+        1 - це 100% від font-size (прям впритик зверху і 
+           знизу символу),тобто line-height === font-size
+           (прям впритик зверху і знизу символу) 
+        2 - це 200% від font-size, тобто 100% іде на символ і
+           знизу та зверху по 50% 
+    */
+
+    font-weight: 400;
+    color: #555;
+
+    /* ! часто використовується в роботі !!!
+       а ми використали бо sliding navigation -
+       створював горизонтальний скрол
+       на body and html tags */
+    /* BUT IT ONLY WORKS THERE IS NOTHING 
+       ABSOLUTELY POSITIONED IN RELATION TO
+       INITIAL CONTAINING BLOCK (BODY) */
+    /* so make body position: relative */
+    position: relative;
+    overflow-x: hidden;
+}
+
+html {
+    /* decrease fz from basic 16px to 10px */
+    /*! font-size: 10px; */
+    /* but it's bad approach, cuz if user would like to have custom bigger fz, then text would not grow, so we state in % from 16px
+    */
+    font-size: 62.5%;
+
+    /* ! часто використовується в роботі !!!
+       а ми використали бо sliding navigation -
+       створював горизонтальний скрол */
+    overflow-x: hidden;
+
+    /* scroll-behavior: smooth; */
+}
+
+
+.hide {
+    display: none;
+}
+
+.hide-show-menu {
+    display: block;
+}
+
+
+/**********************************************/
+/*****    GENERAL (REUSABLE) COMPONENTS     ***/
+/**********************************************/
+
+.button,
+.button:link,
+.button:visited {
+    display: inline-block;
+    padding: 1.6rem 3.2rem;
+
+    border-radius: 7px;
+
+    font-size: 2rem;
+    text-decoration: none;
+
+    /* transit from one state to another (that happens when hover, active happens) --> bc and color */
+    /*! use transition on original state !!!! */
+    transition: all 0.3s;
+
+    font-weight: 600;
+    letter-spacing: 0.7px;
+}
+
+.button__full:link,
+.button__full:visited {
+    background-color: #e67e22;
+    color: #fff;
+}
+
+.button__full:hover,
+.button__full:active {
+    background-color: #cf711f;
+    color: #fff;
+}
+
+.button__outline:link,
+.button__outline:visited {
+    background-color: #ffffff;
+    color: #555;
+}
+
+.button__outline:hover,
+.button__outline:active {
+    background-color: #fdf2e9;
+    color: #555;
+
+    /*! border: 3px solid #fff;  */
+    /* контент зверху скаче при наведені, бо контент і падінг фіктовані
+    і не вказані ширина і висота, і при створені бордера, справжня
+    ширина висота збільшуються */
+
+    /*% TRICK TO CREATE INNER BORDER (3px scale)*/
+    box-shadow: inset 0px 0px 0px 3px #ffffff;
+}
+
+/* helper class */
+.margin-right-sm {
+    margin-right: 1.6rem !important;
+
+    /* Now, when we use a helper class like this,
+        we really, really want the style
+        that it has to be applied
+        and no matter what other styles are already on the element.
+        So in order to ensure that,
+        we usually then add the important keyword here */
+}
+
+.margin-bottom-md {
+    margin-bottom: 4.8rem !important;
+}
+
+.center-text {
+    text-align: center;
+}
+
+
+/* reusable grid: ----------------------------------------------- 
+    This is a very nice technique to basically
+    export these different styles into different classes
+    in order to make them reusable across our page. 
+    */
+
+
+.reusable-grid {
+    display: grid;
+    row-gap: 9.6rem;
+    column-gap: 6.4rem;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* move to another class */
+}
+
+/* 
+       проте що якщо тепер ми хочемо створити 2-гу гріду з 3 колонками ?
+       при тому шоб перша гріда лишалася на 2 колонки
+       для того щоб це зробити, треба цю властивість яка відповідає
+       за к-сть колонок винести знову в окремий клас 
+       (думаю тут scss рулитиме)
+    */
+
+.reusable-grid__2-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.reusable-grid__3-cols {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.reusable-grid__4-cols {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.reusable-grid__5-cols {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.reusable-grid__center-items-v {
+    align-items: center;
+}
+
+/* !!!!!!!!!!!
+Okay, so this one is a new and important addition
+to our grid because this will allow us
+to basically have multiple grids
+inside of the same section (with spacing between them)
+*/
+
+/* So, first we put it everywhere,
+and then we removed it on last-child, right? */
+/* .reusable-grid {
+    margin-bottom: 9.6rem;
+}
+
+.reusable-grid:last-child {
+    margin-bottom: 0;
+} */
+
+/* But now, we are doing it the other way around.
+Now, we will only add it if it is not the last child, */
+
+.reusable-grid:not(:last-child) {
+    margin-bottom: 9.6rem;
+}
+
+/* ------------------------------------------------------- */
+
+.heading-primary,
+.heading__secondary,
+.heading__tertiary {
+    font-weight: 700;
+    color: #333;
+    letter-spacing: -0.5px;
+}
+
+.heading-primary {
+    /* ----> Moved to general (above) */
+    /* font-weight: 700; */
+    /* color: #333; */
+    /* letter-spacing: -0.5px; */
+    /* Positive values of letter-spacing causes characters to spread farther apart, while negative values of letter-spacing bring characters closer together. */
+    /* <---- */
+
+    font-size: 5.2rem;
+    line-height: 0.97;
+
+
+    margin-bottom: 3.2rem;
+    /* smaller dist between h1 and p cuz they semantically are closer */
+}
+
+.heading__secondary {
+    font-size: 4.4rem;
+    line-height: 0.97;
+    margin-bottom: 9.6rem;
+}
+
+.heading__tertiary {
+    font-size: 3rem;
+    line-height: 0.97;
+    margin-bottom: 3.2rem;
+}
+
+
+.subheading {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #cf711f;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+    letter-spacing: 1px;
+
+}
+
+
+/* ------------------------------------------------------- */
+
+/* also another reusable element */
+.container {
+    /* 1200px and 1140px is a convention
+       1136px will be achived with this padding and max-width */
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 3.2rem;
+}
+
+/* ------------------------------------------------------- */
+
+/* дефолтний ту мач жирний */
+strong {
+    font-weight: 500;
+}
+
+.link:link,
+.link:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: #e67e22;
+
+    /* border-bottom: 1px solid #e67e22; */
+    /* !!!!!!!!!!!!!!!!!     currentColor   */
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.4rem;
+
+    transition: all 0.3s;
+}
+
+
+.link:hover,
+.link:active {
+    text-decoration: none;
+    color: #cf711f;
+
+    /*! CANNOT JUST REMOVE - cuz all layout jumps !! */
+    /* border-bottom: none; */
+    border-bottom: 1px solid transparent;
+
+}
+
+/* ------------------------------------------------------- */
+
+.list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.list__item {
+    font-size: 1.8rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.list__icon {
+    width: 3rem;
+    height: 3rem;
+    color: #e67e22;
+}
